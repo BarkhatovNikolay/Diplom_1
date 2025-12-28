@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -82,10 +85,10 @@ public class BurgerNonParameterizedTests {
         burger.addIngredient(firstMockIngredient);
         burger.addIngredient(secondMockIngredient);
         burger.moveIngredient(0, 1);
-        assertEquals("После перемещения первый элемент должен быть mockIngredient2",
-                secondMockIngredient, burger.ingredients.get(0));
-        assertEquals("После перемещения второй элемент должен быть mockIngredient1",
-                firstMockIngredient, burger.ingredients.get(1));
+
+        List<Object> expected = Arrays.asList(secondMockIngredient, firstMockIngredient);
+        assertEquals("После перемещения порядок ингредиентов должен измениться",
+                expected, burger.ingredients);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
